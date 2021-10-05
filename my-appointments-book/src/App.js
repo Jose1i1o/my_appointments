@@ -1,33 +1,23 @@
-import { BiCalendarHeart, BiTrash } from "react-icons/bi"
+import { BiCalendarHeart } from "react-icons/bi"
 import AddApointment from "./components/AddApointment";
 import Search from "./components/Search";
 import APPOINTMENTLIST from "./utils/data.json"
+import AppointmentInfo from "./components/Appointmentinfo";
 
 
 function App() {
   return (
     <div className="App container mx-auto mt-3 font-thin">
-    <h1 className="text-5xl">
-    <BiCalendarHeart className="inline-block text-red-400 align-top"/>Your Appointments</h1>
+    <h1 className="pb-8 text-5xl">
+    <BiCalendarHeart className="inline-block text-red-400 align-top"/>Your Appointments
+    </h1>
+      <AddApointment className="" />
     <Search />
-    <div>
-      <AddApointment />
-    </div>
-        <ul className="divide-y divide-gray-200">
+        <ul className="pt-2 divide-y divide-gray-200">
           {APPOINTMENTLIST.map((appointment) => (
-            <li className="px-3 py-3 flex items-start">
-                <button type="button"
-                  className="p-1.5 mr-1.5 mt-1 rounded text-white bg-red-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                  <BiTrash /></button>
-                <div className="flex-grow">
-                  <div className="flex items-center">
-                    <span className="flex-none font-medium text-2xl text-blue-500">petName</span>
-                    <span className="flex-grow text-right">aptDate</span>
-                  </div>
-                  <div><b className="font-bold text-blue-500">Owner:</b> ownerName</div>
-                  <div className="leading-tight">aptNotes</div>
-                </div>
-            </li>
+            <AppointmentInfo key={appointment.id}
+              appointment={appointment}
+            />
           ))}
         </ul>
     </div>
